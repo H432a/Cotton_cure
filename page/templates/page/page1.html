@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload and Preview Image & Weather Info</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', Arial, sans-serif;
+            background-color: darkolivegreen;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .upload-section {
+            margin-bottom: 20px;
+        }
+
+        .upload-section input[type="file"] {
+            display: none;
+        }
+
+        .upload-section label {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #2e8b57;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .upload-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .submit-btn {
+            padding: 10px 20px;
+            background-color: #2e8b57;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .submit-btn:hover {
+            background-color: #256f4f;
+        }
+
+        /* Weather Section Styles */
+        .weather-section {
+            margin-top: 30px;
+        }
+
+        .weather-display {
+            padding: 15px;
+            background-color: #2e8b57;
+            color: white;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .weather-display p {
+            margin: 5px 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="upload-section">
+            <h1>Upload and Preview Your Image</h1>
+            <form action="{% url 'page1' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="file-upload">Choose Image</label>
+                <input type="file" id="file-upload" name="image" accept="image/*" onchange="previewImage(event)">
+                <img id="preview" src="" alt="Image preview will appear here">
+                <br><br>
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+        </div>
+
+        <!-- Weather Section -->
+        <div class="weather-section">
+            <h2>Weather Information</h2>
+            <button class="submit-btn" onclick="fetchWeatherForLocation()">Get Current Weather</button>
+            <div id="status" class="weather-display">Weather status will appear here.</div>
+            <div id="temperature" class="weather-display"></div>
+            <div id="condition" class="weather-display"></div>
+        </div>
+    </div>
+
+    <script>
+        function previewImage(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const preview = document.getElementById('preview');
+                preview.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Function to fetch weather data using the API
+        async function getWeather(location, message) {
+            message.textContent = "Loading...";
+            try {
+                const response = await fetch(
+                    `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/today?unitGroup=us&include=current&key=WBJ8N28RSTEG4YKPQ3FFEUMBQ&contentType=json`,
+                    { mode: "cors" }
+                );
+                const data = await response.json();
+
+                // Return an array of weather data
+                return [
+                    data.currentConditions.temp, 
+                    data.currentConditions.conditions,
+                    data.currentConditions.icon,
+                    data.days[0].description,
+                    data.resolvedAddress,
+                ];
+            } catch (error) {
+                message.textContent = "Invalid Location";
+                console.log(`Error: ${error}`);
+            }
+        }
+
+        // Function to handle geolocation and display weather data
+        function fetchWeatherForLocation() {
+            const statusMessage = document.getElementById("status");
+            const tempDisplay = document.getElementById("temperature");
+            const conditionDisplay = document.getElementById("condition");
+
+            // Show a confirmation dialog to ask the user if they want to share their location
+            const userConfirmed = confirm("Do you want to share your location to get the weather data?");
+            if (userConfirmed) {
+                // Check if geolocation is supported
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                        function(position) {
+                            const lat = position.coords.latitude;
+                            const lon = position.coords.longitude;
+                            const location = `${lat},${lon}`;
+
+                            // Fetch weather using the location (latitude, longitude)
+                            getWeather(location, statusMessage).then((weatherData) => {
+                                if (weatherData) {
+                                    const [temp, conditions, icon, description, resolvedAddress] = weatherData;
+
+                                    // Update the UI with the weather information
+                                    statusMessage.textContent = `Weather for ${resolvedAddress}`;
+                                    tempDisplay.textContent = `Temperature: ${temp} °F`;
+                                    conditionDisplay.textContent = `Conditions: ${conditions}`;
+                                }
+                            });
+                        },
+                        function(error) {
+                            statusMessage.textContent = "Unable to retrieve your location.";
+                            console.error(`Geolocation error: ${error.message}`);
+                        }
+                    );
+                } else {
+                    statusMessage.textContent = "Geolocation is not supported by this browser.";
+                }
+            } else {
+                statusMessage.textContent = "Location permission denied by the user.";
+            }
+        }
+    </script>
+
+</body>
+</html>
+
+
+

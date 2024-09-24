@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login & Registration Form</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800&display=swap" rel="stylesheet">
+    {% load static %}
+    <style>
+        *, *:before, *:after{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        body{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Nunito', sans-serif;
+            background-image: url("{% static 'page/images/about.jpg' %}");
+            background-size: cover;
+            background-position: center;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.1);
+            padding: 15px 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin: 0 20px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 20px;
+            font-weight: 700;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .navbar ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 3px;
+            background-color: black;
+            left: 50%;
+            bottom: -5px;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+
+        .navbar ul li a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .navbar ul li a:hover {
+            color: #2e8b57;
+        }
+
+        input, button{
+            border:none;
+            background: none;
+        }
+
+        .cont{
+            overflow: hidden;
+            position: relative;
+            width: 900px;
+            height: 550px;
+            background: #BFD9B1;
+            box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+            border-radius: 15px;
+        }
+
+        .form{
+            position: relative;
+            width: 640px;
+            height: 100%;
+            padding: 50px 30px;
+            -webkit-transition:-webkit-transform 1.2s ease-in-out;
+            transition: -webkit-transform 1.2s ease-in-out;
+            transition: transform 1.2s ease-in-out;
+            transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
+        }
+
+        h2{
+            width: 100%;
+            font-size: 30px;
+            text-align: center;
+        }
+
+        label{
+            display: block;
+            width: 260px;
+            margin: 25px auto 0;
+            text-align: center;
+        }
+
+        label span{
+            font-size: 14px;
+            font-weight: 600;
+            color: darkgreen;
+            text-transform: uppercase;
+        }
+
+        input{
+            display: block;
+            width: 100%;
+            margin-top: 5px;
+            font-size: 16px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid rgba(109, 93, 93, 0.4);
+            text-align: center;
+            font-family: 'Nunito', sans-serif; 
+        }
+
+        button{
+            display: block;
+            margin: 0 auto;
+            width: 260px;
+            height: 36px;
+            border-radius: 30px;
+            color: darkgreen;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .submit{
+            margin-top: 40px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-family: 'Nunito', sans-serif;
+            background: black;
+            transition: .5s;
+        }
+
+        .submit:hover{
+            transition: .5s;
+            background: white;
+        }
+
+        .sub-cont{
+            overflow: hidden;
+            position: absolute;
+            left: 640px;
+            top: 0;
+            width: 900px;
+            height: 100%;
+            padding-left: 260px;
+            background: #2F4F4F;
+            -webkit-transition: -webkit-transform 1.2s ease-in-out;
+            transition: -webkit-transform 1.2s ease-in-out;
+            transition: transform 1.2s ease-in-out;
+        }
+
+        .cont.s-signup .sub-cont{
+            -webkit-transform:translate3d(-640px, 0, 0);
+            transform:translate3d(-640px, 0, 0);
+        }
+
+        .img{
+            overflow: hidden;
+            z-index: 2;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 260px;
+            height: 100%;
+            padding-top: 360px;
+        }
+
+        .img:before{
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 900px;
+            height: 100%;
+            background-image: url(images/bg.jpg);
+            background-size: cover;
+            transition: -webkit-transform 1.2s ease-in-out;
+            transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
+        }
+
+        .img:after{
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .cont.s-signup .img:before{
+            -webkit-transform:translate3d(640px, 0, 0);
+            transform:translate3d(640px, 0, 0);
+        }
+
+        .img-text{
+            z-index: 2;
+            position: absolute;
+            left: 0;
+            top: 50px;
+            width: 100%;
+            padding: 0 20px;
+            text-align: center;
+            color: #fff;
+            -webkit-transition:-webkit-transform 1.2s ease-in-out;
+            transition: -webkit-transform 1.2s ease-in-out;
+            transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
+        }
+
+        .img-text h2{
+            margin-bottom: 10px;
+            font-weight: normal;
+        }
+
+        .img-text p{
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .cont.s-signup .img-text.m-up{
+            -webkit-transform:translateX(520px);
+            transform:translateX(520px);
+        }
+
+        .img-text.m-in{
+            -webkit-transform:translateX(-520px);
+            transform:translateX(-520px);
+        }
+
+        .cont.s-signup .img-text.m-in{
+            -webkit-transform:translateX(0);
+            transform:translateX(0);
+        }
+
+        .sign-in{
+            padding-top: 65px;
+            -webkit-transition-timing-function:ease-out;
+            transition-timing-function:ease-out;
+        }
+
+        .cont.s-signup .sign-in{
+            -webkit-transition-timing-function:ease-in-out;
+            transition-timing-function:ease-in-out;
+            -webkit-transition-duration:1.2s;
+            transition-duration:1.2s; 
+            -webkit-transform:translate3d(640px, 0, 0);
+            transform:translate3d(640px, 0, 0);
+        }
+
+        .img-btn{
+            overflow: hidden;
+            z-index: 2;
+            position: relative;
+            width: 100px;
+            height: 36px;
+            margin: 0 auto;
+            background: transparent;
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .img-btn:after{
+            content: '';
+            z-index: 2;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid #fff;
+            border-radius: 30px;
+        }
+
+        .img-btn span{
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: -webkit-box;
+            display: flex;
+            -webkit-box-pack:center;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            -webkit-transition:-webkit-transform 1.2s;
+            transition: -webkit-transform 1.2s;
+            transition: transform 1.2s;
+            transition: transform 1.2s, -webkit-transform 1.2s;;
+        }
+
+        .img-btn span.m-in{
+            -webkit-transform:translateY(-72px);
+            transform:translateY(-72px);
+        }
+
+        .cont.s-signup .img-btn span.m-in{
+            -webkit-transform:translateY(0);
+            transform:translateY(0);
+        }
+
+        .cont.s-signup .img-btn span.m-up{
+            -webkit-transform:translateY(72px);
+            transform:translateY(72px);
+        }
+
+        .sign-up{
+            -webkit-transform:translate3d(-900px, 0, 0);
+            transform:translate3d(-900px, 0, 0);
+            background: #BFD9B1; /* Background color for sign-up form */
+        }
+
+        .cont.s-signup .sign-up{
+            -webkit-transform:translate3d(0, 0, 0);
+            transform:translate3d(0, 0, 0);
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'index' %}#about">About</a></li>
+            <li><a href="{% url 'index' %}login/">Login</a></li>
+            <li><a href="{% url 'index' %}blog/">Blog</a></li>
+        </ul>
+    </div>
+    <div class="cont">
+        <!-- Sign-In Form -->
+        <div class="form sign-in" >
+            <form action="{% url 'choose' %}" method="POST">
+                {% csrf_token %}
+                <h2>Sign In</h2>
+                <label>
+                    <span>Phone number</span>
+                    <input type="phone" name="phone" required>
+                </label>
+                <label>
+                    <span>Password</span>
+                    <input type="password" name="password" required>
+                </label>
+                <button class="submit" type="submit">Sign In</button>
+            </form>
+            <div class="logo" style="text-align: center; margin-top: 80px;">
+                <img src="{% static 'page/images/logo.png' %}" alt="Logo" style="max-width: 200px; height: auto;">
+            </div>
+            
+        </div>
+
+        <!-- Sub-Container for Image and Text -->
+        <div class="sub-cont">
+            <div class="img">
+                <div class="img-text m-up">
+                    <h1>New here?</h1>
+                    <p>Sign up and discover</p>
+                </div>
+                <div class="img-text m-in">
+                    <h1>One of us?</h1>
+                    <p>Just sign in</p>
+                </div>
+                <div class="img-btn">
+                    <span class="m-up">Sign Up</span>
+                    <span class="m-in">Sign In</span>
+                </div>
+            </div>
+
+            <!-- Sign-Up Form -->
+            <div class="form sign-up">
+                <form method="POST">
+                    {% csrf_token %}
+                    <h2>Sign Up</h2>
+                    <label>
+                        <span>Name</span>
+                        <input type="text" name="name" required>
+                    </label>
+                    <label>
+                        <span>Phone number</span>
+                        <input type="phone" name="phone" required>
+                    </label>
+                    <label>
+                        <span>Password</span>
+                        <input type="password" name="password" required>
+                    </label>
+                    <label>
+                        <span>Confirm Password</span>
+                        <input type="password" name="confirm_password" required>
+                    </label>
+                    <button type="submit" class="submit">Sign Up Now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        document.querySelector('.img-btn').addEventListener('click', function() {
+            document.querySelector('.cont').classList.toggle('s-signup');
+        });
+    </script>
+</body>
+</html>
+

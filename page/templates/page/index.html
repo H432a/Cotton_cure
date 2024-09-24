@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index Page</title>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            font-family: 'Poppins', Times, serif;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            background-color: #f5f5dc;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.1);
+            padding: 15px 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin: 0 20px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: black;
+            font-size: 20px;
+            font-weight: 700;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .navbar ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 3px;
+            background-color: #dcdcdc;
+            left: 50%;
+            bottom: -5px;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+
+        .navbar ul li a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .navbar ul li a:hover {
+            color: #2e8b57;
+        }
+
+        .content-container {
+            width: 100%; 
+            height: 100vh; 
+            margin: auto;
+            position: relative;
+            background-image: url('/static/page/images/bg2.jpeg'); 
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: multiply; 
+            background-color: rgba(152, 219, 198, 0.5); 
+            filter:brightness(80%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .content {
+            text-align: center;
+            color: #ffffff;
+            padding: 40px;
+            background-color: rgba(0, 0, 0, 0.4);
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            max-width: 800px;
+        }
+
+        .logo {
+            display: block;
+            margin: 0 auto 20px auto;
+            max-width: 600px;
+        }
+
+        .content p {
+            font-size: 20px;
+            margin-top: 20px;
+            line-height: 1.5;
+            text-shadow: 0px 0px 15px rgba(255, 255, 255, 0.8);
+        }
+
+        .about-container {
+    position: relative;
+    width: 100%;
+    padding: 60px 15px;
+    background-image: url('/static/page/images/about1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    z-index: 1;
+    
+    /* Center the content */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center; /* Ensures that text content is centered */
+}
+
+        .about-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: -1;
+        }
+
+        .about-container h2 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #f4a261;
+        }
+
+        .about-container p {
+            font-size: 15px;
+            text-align: center;
+            line-height: 1.8;
+            max-width: 800px;
+            margin-left: 0;
+            color: white;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .about-container h3 {
+            text-align: center;
+            color: white;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .about-container h4 {
+            color: #f4a261;
+            margin-top: 30px;
+            padding-left: 0; /* Removed padding for icon */
+            font-weight: 400;
+        }
+
+        .services-container {
+            display: flex;
+            justify-content: center; /* Center all items within the container */
+            flex-wrap: wrap; /* Allow items to wrap */
+            gap: 20px; /* Adjust spacing between blocks */
+        }
+
+        .service-block {
+            flex: 1 1 calc(40% - 10px); /* Set to take 40% of the width minus gap */
+            max-width: 40%; /* Ensure each block does not exceed 40% */
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .service-block:nth-child(3) {
+            flex: 0 0 100%; /* Full-width for the third block */
+            display: flex; /* Make it a flex container */
+            justify-content: center; /* Center the content horizontally */
+            align-items: center; /* Center the content vertically (if needed) */
+            max-width: 800px; /* Set a maximum width for visual appeal */
+            margin: 0 auto; /* Center the block within the parent */
+}
+
+        .service-block p {
+            margin-top: 10px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="login/">Login</a></li>
+            <li><a href="blog/">Blog</a></li>
+        </ul>
+    </div>
+
+    <div id="home" class="content-container">
+        <div class="content">
+            <img src="{% static 'page/images/logo.png' %}" alt="Logo" class="logo">
+            <p><b><i>Healthy soil, healthy plants, healthy profits: Identify and treat cotton diseases to reap a bountiful harvest.</i></b></p>
+        </div>
+    </div>
+
+        <!-- About Section -->
+        <div id="about" class="about-container">
+            <h2>About CottonCure</h2>
+            <p>We are dedicated to improving the health of cotton plants through advanced disease detection methods. Our mission is to ensure that farmers can achieve the best possible yields by providing them with the tools and knowledge they need to identify and treat common cotton diseases effectively.</p>
+            <h3>CottonCure Offers the Following Services</h3>
+    
+            <div class="services-container">
+                <div class="service-block">
+                    <h4>1. Upload Image to Diagnose Disease</h4>
+                    <p>Snap a picture of your cotton plant, and our tool will instantly identify any diseases. It's quick and easy—just upload and discover.</p>
+                </div>
+    
+                <div class="service-block">
+                    <h4>2. Type Disease to Find Solutions</h4>
+                    <p>Know the symptoms? Simply type the disease name, and we'll provide detailed information and effective treatments to keep your cotton healthy.</p>
+                </div>
+    
+                <div class="service-block">
+                    <h4>3. Real-Time Monitoring (Premium Service)</h4>
+                    <p>For comprehensive care, our advanced device continuously monitors your cotton fields, offering real-time insights and alerts. This premium service ensures your crops are always protected.</p>
+                </div>
+            </div>
+        </div>
+        <script src="{% static 'js/translate.js' %}"></script>
+    </body>
+    </html>
+    

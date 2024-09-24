@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Result</title>
+    {% load static %}
+    <style>
+        body {
+            background-image: url("{% static 'page/images/about.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.5); /* Slightly faded background */
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .predicted-disease {
+            display: inline-block;
+            background-color: #007BFF; /* Bootstrap primary color */
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Prediction Result</h1>
+        <p>Predicted Disease:</p>
+        <span class="predicted-disease">{{ predicted_label|slice:":-6" }}</span>
+        
+        <div style="margin-top: 20px;">
+            <a href="{% url 'page1' %}" style="color: white; text-decoration: underline;">Upload another image</a>
+        </div>
+    </div>
+</body>
+</html>
+
+

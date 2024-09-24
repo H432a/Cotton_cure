@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovative Crop Monitoring Solutions</title>
+    {% load static %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            background-image: url("{% static 'page/images/page3bg.jpg' %}");
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color:white;
+        }
+        .box {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            text-decoration: none;
+            color: #333;
+        }
+        .box img {
+            width: 50%;
+            height: auto;
+        }
+        .box-content {
+            padding: 20px;
+            width: 50%;
+        }
+        .box-content h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.5em;
+        }
+        .box-content p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Revolutionize Your Crop Monitoring with Innovative Solutions</h1>
+        
+        <a href="{% url 'payment' %}" class="box">
+            <div class="box-content">
+                <h2>Field-Based Camera System</h2>
+                <p><strong>Advantages:</strong> Fixed location provides a consistent view of crops. Less interference from farm equipment or human activity. Wide coverage with fewer cameras.</p>
+                <p><strong>Efficiency:</strong> High for monitoring specific zones continuously.</p>
+                <p><strong>Land Size:</strong> Suitable for fields up to 10,000 sq. meters (1 hectare).</p>
+                <p><strong>Specifications/Components Required:</strong> 12 MP, Wide-Angle, IP67, Solar-Powered RGB Camera: ₹15,000 - ₹30,000. Wireless Communication Module & Solar Panels: ₹5,000 - ₹10,000. Weather-Resistant Enclosures: ₹2,000 - ₹5,000.</p>
+                <p><strong>Range of Total Cost:</strong> ₹25,000 - ₹45,000.</p>
+            </div>
+            <img src="{% static 'page/images/cf2.png' %}" alt="Field-Based Camera System">
+        </a>
+
+        <a href="{% url 'payment' %}" class="box">
+            <div class="box-content">
+                <h2>Drone-Based Monitoring</h2>
+                <p><strong>Advantages:</strong> Flexibility in capturing images from different angles and locations. Can cover large areas quickly and adapt to changing conditions.</p>
+                <p><strong>Efficiency:</strong> High for dynamic and large-scale monitoring.</p>
+                <p><strong>Land Size:</strong> Suitable for fields up to 100,000 sq. meters (10 hectares).</p>
+                <p><strong>Specifications/Components Required:</strong> 12 MP, Wide-Angle, IP67 RGB Camera: ₹10,000 - ₹20,000. Multispectral Camera (NIR, Red-edge): ₹30,000 - ₹60,000. GPS Module, Thermal Sensor, Drone Frame, LiDAR Sensor: ₹20,000 - ₹50,000.</p>
+                <p><strong>Range of Total Cost:</strong> ₹60,000 - ₹1,20,000.</p>
+            </div>
+            <img src="{% static 'page/images/cff.png' %}" alt="Drone-Based Monitoring">
+        </a>
+        <a href="{% url 'payment' %}" class="box">
+            <div class="box-content">
+                <h2>Tractor-Mounted Camera System</h2>
+                <p><strong>Advantages:</strong> Flexibility to capture images while performing regular farming activities. Lower cost compared to installing multiple field-based cameras.</p>
+                <p><strong>Efficiency:</strong> Moderate for on-the-go monitoring.</p>
+                <p><strong>Land Size:</strong> Suitable for fields up to 50,000 sq. meters (5 hectares).</p>
+                <p><strong>Specifications/Components Required:</strong> 12 MP, Wide-Angle, IP67 RGB Camera: ₹10,000 - ₹20,000. Multispectral Camera (NIR, Red-edge): ₹30,000 - ₹60,000. Mounting Hardware, GPS Module, Power Supply: ₹5,000 - ₹15,000.</p>
+                <p><strong>Range of Total Cost:</strong> ₹40,000 - ₹85,000.</p>
+            </div>
+            <img src="{% static 'page/images/trac.png' %}" alt="Tractor-Mounted Camera System">
+        </a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover the Disease</title>
+    {% load static %}
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', Times, serif;
+            background-color: #f5f5f5;
+            background-image: url("{% static 'page/images/choose1.png' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+        }
+
+        /* Transparent box container */
+        .transparent-box {
+            background-color: rgba(255, 255, 255, 0.5); /* White with 80% opacity */
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 80%;
+            margin: 40px auto;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 40px; /* Moves the boxes down */
+        }
+
+        .box {
+            flex: 1 1 calc(40% - 20px);
+            max-width: 40%;
+            background-color: #2e8b57;
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .box h3 {
+            margin: 0 0 10px 0;
+            font-size: 24px;
+        }
+
+        .box p {
+            font-size: 16px;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Heading section */
+        .heading-section {
+            text-align: center;
+            margin-top: 0px;
+            margin-bottom: 30px;
+        }
+
+        .heading-section h1 {
+            font-size: 36px;
+            color: black;
+            margin-bottom: 5px;
+        }
+
+        .heading-section p {
+            font-size: 20px;
+            color: black;
+        }
+
+        /* Responsive design for smaller screens */
+        @media screen and (max-width: 768px) {
+            .box {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+            .transparent-box {
+                max-width: 90%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Transparent box wrapping all content -->
+    <div class="transparent-box">
+        
+        <!-- Heading section -->
+        <div class="heading-section">
+            <h1>Explore the Power of CottonCure</h1>
+            <p><b>Your go-to tool for diagnosing and treating cotton plant diseases. Choose below and let CottonCure take care of the rest.</b></p>
+        </div>
+
+        <!-- Container for the boxes -->
+        <div class="container">
+            <!-- Box 1 linking to page1.html -->
+            <a href="{% url 'index' %}page1/" class="box">
+                <h4>1. Upload Image to Diagnose Disease</h4>
+                <p>Snap a picture of your cotton plant, and our tool will instantly identify any diseases. It's quick and easy—just upload and discover.</p>
+            </a>
+
+            <!-- Box 2 linking to page2.html -->
+            <a href="page2.html" class="box">
+                <h4>2. Type Disease to Find Solutions</h4>
+                <p>Know the symptoms? Simply type the disease name, and we'll provide detailed information and effective treatments to keep your cotton healthy.</p>
+            </a>
+
+            <!-- Box 3 linking to page3.html -->
+            <a href="{% url 'index' %}page3/" class="box">
+                <h4>3. Real-Time Monitoring (Premium Service)</h4>
+                <p>For comprehensive care, our advanced device continuously monitors your cotton fields, offering real-time insights and alerts. This premium service ensures your crops are always protected.</p>
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>
+
+
+
+
+

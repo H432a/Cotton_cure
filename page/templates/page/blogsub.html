@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Future of Cotton Farming</title>
+    {% load static %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4; /* Light gray background */
+            background-image: url("{% static 'page/images/blogsubbg.png' %}");
+            margin: 0;
+            padding: 20px;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.1);
+            padding: 15px 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin: 0 20px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: black;
+            font-size: 20px;
+            font-weight: 700;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .navbar ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 3px;
+            background-color: #dcdcdc;
+            left: 50%;
+            bottom: -5px;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+
+        .navbar ul li a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .navbar ul li a:hover {
+            color: #e67e22;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+            border-radius: 8px;
+        }
+        h2 {
+            color: #e67e22; /* Dark gray for the main heading */
+            text-align: center;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+        }
+        h3 {
+            text-align:center;
+            color: #e67e22; /* Orange color for subheadings */
+            margin-top: 20px;
+        }
+        p {
+            color: black; /* Darker text for readability */
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'index' %}#about">About</a></li>
+            <li><a href="{% url 'index' %}login">Login</a></li>
+            <li><a href="{% url 'index' %}blog">Blog</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <h2>The Future of Cotton Farming: Managing Diseases, Embracing Technology, and Learning from Farmers</h2>
+
+        <p>Cotton is a crucial crop globally, but managing diseases like fusarium and verticillium wilt is a challenge. At CottonCure, we equip farmers with tools to detect and treat diseases early, boosting yields and improving plant health.</p>
+
+        <h3>Common Cotton Plant Diseases</h3>
+        <p>Fusarium wilt and verticillium wilt can cause stunted growth and yield loss. Early detection is key. By using disease-resistant varieties and monitoring for symptoms like wilting, farmers can reduce risks. CottonCure’s advanced technology helps farmers identify these diseases early and act quickly to save their crops.</p>
+
+        <h3>Farming Tips for Disease Prevention</h3>
+        <p>Prevention is better than cure. Practices like balanced soil nutrition, efficient irrigation, and integrated pest management (IPM) are essential for keeping cotton plants healthy. Maintaining soil fertility, controlling pests, and proper water management are critical steps to avoid diseases.</p>
+
+        <h3>The Role of Technology</h3>
+        <p>Technology is transforming cotton farming. AI-driven disease detection, drones, and smart irrigation systems now allow farmers to monitor crops in real time and respond to threats. CottonCure is at the forefront, offering cutting-edge tools to improve yields and protect plants.</p>
+
+        <h3>Farmer Success Stories</h3>
+        <p>Farmers like Mr. Kumar from Tamil Nadu have improved their cotton yields by 20% using CottonCure’s disease detection tools. Early intervention made the difference, showing how technology can enhance traditional farming practices.</p>
+        <h3>Industry Trends</h3>
+        <p>The cotton industry is moving towards organic farming and sustainable water use. CottonCure is helping farmers stay ahead by adopting eco-friendly practices that ensure long-term success.</p>
+    </div>
+</body>
+</html>
