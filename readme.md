@@ -3,6 +3,8 @@
 ## Overview
 CropCare AI is a comprehensive solution developed to empower farmers with real-time crop disease prediction and prevention. It integrates **advanced hardware** and **AI-powered software** to provide actionable insights, improve crop health, and promote sustainable farming practices.
 
+Please look into SIH2024_1638.pdf file attached
+
 ---
 
 ## Features
